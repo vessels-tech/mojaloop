@@ -19,6 +19,13 @@
 
 ## <a name='InstallingCLITools'></a>Installing CLI Tools
 
+>Note: This onboarding guide guide has been tested with the following environments.
+>* *macOS*: High Sierra (10.13.6)
+>* *Linux*: Ubuntu 18 LTS
+>* *Windows*: Windows 10 [todo]
+>_If you run into problems with your environment, let us know on the [Mojaloop Slack](https://mojaloop-slack.herokuapp.com/) or submit an issue to the [project repo](https://github.com/mojaloop/project)._
+
+
 Building and Running Mojaloop from source requires the following tools:
 
 1. [`brew`](#1-brew-macos) (MacOS) [todo: windows package manager]
@@ -54,7 +61,7 @@ Follow the Docker for Mac installation guide [here](https://docs.docker.com/dock
 
 
 #### Linux
-Install Docker for Ubuntu [here](https://docs.docker.com/install/linux/docker-ce/ubuntu/), or Docker for CentOS [here](https://docs.docker.com/install/linux/docker-ce/centos/).  
+Install Docker for Ubuntu [here](https://docs.docker.com/install/linux/docker-ce/ubuntu/), or Docker for CentOS [here](https://docs.docker.com/install/linux/docker-ce/centos/). Follow the steps for Docker CE.
 You can also install from docker binaries if your flavor of Linux is not supported [here](https://docs.docker.com/install/linux/docker-ce/binaries/).
 
 #### Windows
@@ -204,22 +211,47 @@ In order to contribute to a given repo, you should first make a fork of the repo
 
 Postman is a tool for exploring and testing APIs.
 
+##### macOS + Windows
+
 To install Postman, follow these instructions: [Get Postman](https://www.getpostman.com/postman)
 
-Alternatively on **Ubuntu** you may run:
+#### Ubuntu
+
+
+##### Install using Snap
+For linux distros with support for snap packages, you can install Postman with the following:
+```bash
+sudo snap install postman
 ```
-wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
+
+##### Install from `.tar.gz`
+Alternatively, you can install with a more traditional approach:
+```bash
+wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz #or download from getpostman.com
 sudo tar -xzf postman.tar.gz -C /opt
+
 rm postman.tar.gz
-sudo ln -s /opt/Postman/Postman /usr/bin/postman
+echo '[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Exec=/opt/Postman/app/Postman %U
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Development;' > ~/.local/share/applications/Postman.desktop
 ```
+
+>Note: on Ubuntu 18, you must also install libgconf-2-4 to get postman to run
+>```bash
+>sudo apt-get install libgconf-2-4
+>```
 
 #### <a name='PostmanSetup'></a>Postman Setup
 
 There are already a number of readymade Mojaloop Postman collections in the [Postman Repo](https://github.com/mojaloop/postman).
 
 ```bash
-git clone git@github.com:mojaloop/postman.git
+git clone https://github.com/mojaloop/postman.git
 ```
 
 You can then import these collections into your Postman:
@@ -242,8 +274,6 @@ Zenhub is a Project Management Plugin for GitHub. It adds some helpful features 
   - [Chrome Installer](https://chrome.google.com/webstore/detail/zenhub-for-github/ogcgkffhplmphkaahpmffcafajaocjbd)
   - [Firefox Installer](https://www.zenhub.com/extension)
 
-[todo]
-
 
 ### <a name='JavascriptIDEOptional'></a>4. Javascript IDE (Optional)
 
@@ -252,7 +282,6 @@ When developing for Mojaloop, you may wish to use a Javascript IDE or a simple t
 - [Atom](https://atom.io/)
 - `vim` (not for the faint of heart)
 - [Webstorm](http://www.jetbrains.com/webstorm/) (free 30 day trial)
-
 
 
 ### <a name='MySQLWorkbenchOptional'></a>5. MySQLWorkbench (Optional)
@@ -332,7 +361,6 @@ Follow the Onboarding guides for each sub project here:
 ## <a name='OtherUsefulLinks'></a>Other Useful Links
 - [Mojaloop Specification Documents](https://github.com/mojaloop/mojaloop-specification)
 - [Mojaloop Project Repo](https://github.com/mojaloop/project) - for tracking issues across all sub-projects
-
 
 
 
